@@ -1,9 +1,9 @@
 {
-  "name": "crunchyrewriter",
+  "name": "crutchyrewriter",
   "version": "1.0.0",
-  "description": "Small rewrites helper",
+  "description": "Not so cool rewrite engine for Fastify",
   "main": "index.js",
-  "repository": "git@github.com:imcatwhocode/fastify-rewrite.git",
+  "repository": "git@github.com:imcatwhocode/crutchyrewriter.git",
   "author": "Dmitry Pepperstein <hi@imcatwhocode.dev>",
   "license": "MIT",
   "dependencies": {},
