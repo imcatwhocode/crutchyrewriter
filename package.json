@@ -1,0 +1,48 @@
+{
+  "name": "crunchyrewriter",
+  "version": "1.0.0",
+  "description": "Small rewrites helper",
+  "main": "index.js",
+  "repository": "git@github.com:imcatwhocode/fastify-rewrite.git",
+  "author": "Dmitry Pepperstein <hi@imcatwhocode.dev>",
+  "license": "MIT",
+  "dependencies": {},
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base"
+    ],
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "curly": [
+        "error",
+        "multi",
+        "consistent"
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 120
+        }
+      ],
+      "nonblock-statement-body-position": [
+        "error",
+        "below"
+      ],
+      "padded-blocks": [
+        "off"
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ]
+    }
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
