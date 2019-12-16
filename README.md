@@ -1,7 +1,7 @@
 CrutchyRewriter
 =======
 CrutchyRewriter is a simple rewriting plugin for Fastify.
-At this moment, it deadly simple and even not support extracted parameters (like `/item/:id` to `/rewritten/item/:id`). I've created CrutchyRewriter for a single one single-page application I've done recently, but it can be useful for you too. 
+At this moment, it is deadly simple and even not support extracted parameters (like `/item/:id` to `/rewritten/item/:id`). I've created CrutchyRewriter for a single one single-page application I've done recently, but it can be useful for you too. 
 
 For example, if you're using HTML5 History API in your reactive framework as well as the API sharing the same domain, you'll need to redirect all links like `/product/$id`, `/checkout`, `/blog/$id` to the index HTML page, but keeping routing `/api/` namespace as usual.
 
