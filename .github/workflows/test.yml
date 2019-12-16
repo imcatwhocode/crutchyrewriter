@@ -1,0 +1,38 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Setup
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13
+
+    - name: Dependencies
+      run: |
+        npm ci
+
+    - name: Lint
+      run: npm run lint
+      
+    - name: Test
+      run: npm run test
+
+    - name: Coveralls Parallel
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ./coverage/lcov.info
+
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
+      
