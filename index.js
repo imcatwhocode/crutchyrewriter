@@ -85,15 +85,14 @@ class CrutchyRewriter {
 
       // Regular expression
       case 'object':
-        if (typeof match.test === 'function') {
 
-          this.conditions.regexps.push(match);
-          this.conditions.rgvalues.push(to);
-          return true;
+        if (!(match instanceof RegExp))
+          throw new TypeError('Given "match" criteria is an object, but is not a regular expression');
 
-        }
+        this.conditions.regexps.push(match);
+        this.conditions.rgvalues.push(to);
+        return true;
 
-        throw new TypeError('Given "match" criteria is an object, but is not a regular expression');
 
       // Compare functions
       case 'function':
@@ -103,6 +102,9 @@ class CrutchyRewriter {
 
       // Exact match
       case 'string':
+        if (match.length === 0)
+          throw new Error('Match condition string can\'t be empty');
+
         this.conditions.exact.set(match, to);
         return true;
 
@@ -120,6 +122,9 @@ class CrutchyRewriter {
    * @returns {String|null} Returns target URL if related rewrite condition exists, null otherwise
    */
   matchCondition(url) {
+
+    if (typeof url !== 'string')
+      throw new TypeError(`#matchCondition expects to receive URL as string, but ${typeof url} is given`);
 
     // Matching with exact rewrite conditions first
     const rewrite = this.conditions.exact.get(url);
@@ -151,6 +156,9 @@ class CrutchyRewriter {
    */
   createInterceptHandler(handler) {
 
+    if (typeof handler !== 'function')
+      throw new TypeError(`Intercept hadler must be a function, but ${typeof handler} given`);
+
     return (req, res) => {
 
       const rewrite = this.matchCondition(req.url);
@@ -179,27 +187,28 @@ class CrutchyRewriter {
   /**
    * Implementation of Fastify serverFactory interface
    * @param {Function<Object,Object>} handler Fastify HTTP handler
-   * @param {Object}                  opts    Fastify options object
+   * @param {Object}                  [opts]  Fastify options object
    * @returns {Object} Native HTTP server
    */
   serverFactory(handler, opts) {
 
+    if (typeof handler !== 'function')
+      throw new TypeError(`HTTP handler must be a function, but ${typeof handler} given`);
+
+    if (typeof opts !== 'undefined' && typeof opts !== 'object')
+      throw new TypeError(`Server factory "opts" argument must be an object or undefined, but ${typeof opts} given`);
+
+    // HTTP/1.1 Plain
+    if (typeof opts === 'undefined' || (!opts.http2 && !opts.https))
+      return http.createServer(this.createInterceptHandler(handler));
+
+    if (!opts.http2 && opts.https)
+      return https.createServer(opts.https, this.createInterceptHandler(handler));
+
+    // HTTP/2
     if (opts.https)
-
-      // HTTP2 + TLS
-      if (opts.http2)
-        return http2().createSecureServer(opts.https, this.createInterceptHandler(handler));
-
-      // HTTP + TLS
-      else
-        return https.createServer(opts.https, this.createInterceptHandler(handler));
-
-    // HTTP2
-    if (opts.http2)
-      return http2().createServer(this.createInterceptHandler(handler));
-
-    // HTTP
-    return http.createServer(this.createInterceptHandler(handler));
+      return http2.createSecureServer(opts.https, this.createInterceptHandler(handler));
+    return http2.createServer(this.createInterceptHandler(handler));
 
   }
 

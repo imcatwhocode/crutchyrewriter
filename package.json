@@ -7,9 +7,17 @@
   "author": "Dmitry Pepperstein <hi@imcatwhocode.dev>",
   "license": "MIT",
   "dependencies": {},
+  "scripts": {
+    "lint": "npx eslint .",
+    "test": "npx nyc mocha"
+  },
   "eslintConfig": {
     "extends": [
-      "airbnb-base"
+      "airbnb-base",
+      "plugin:mocha/recommended"
+    ],
+    "plugins": [
+      "mocha"
     ],
     "env": {
       "node": true,
@@ -43,6 +51,9 @@
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.2.2",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   }
 }
