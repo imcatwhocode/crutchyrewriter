@@ -1,5 +1,7 @@
 CrutchyRewriter
 =======
+[![Coverage Status](https://coveralls.io/repos/github/imcatwhocode/crutchyrewriter/badge.svg)](https://coveralls.io/github/imcatwhocode/crutchyrewriter)
+
 CrutchyRewriter is a simple rewriting plugin for Fastify.
 At this moment, it is deadly simple and even not support extracted parameters (like `/item/:id` to `/rewritten/item/:id`). I've created CrutchyRewriter for a single one single-page application I've done recently, but it can be useful for you too. 
 
