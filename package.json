@@ -1,6 +1,6 @@
 {
   "name": "crutchyrewriter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Not so cool rewrite engine for Fastify",
   "main": "index.js",
   "repository": "git@github.com:imcatwhocode/crutchyrewriter.git",
@@ -51,11 +51,11 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.9",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-mocha": "^6.2.2",
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-mocha": "^6.3.0",
+    "mocha": "^7.1.0",
+    "nyc": "^15.0.0"
   }
 }
