@@ -93,7 +93,6 @@ class CrutchyRewriter {
         this.conditions.rgvalues.push(to);
         return true;
 
-
       // Compare functions
       case 'function':
         this.conditions.comparators.push(match);

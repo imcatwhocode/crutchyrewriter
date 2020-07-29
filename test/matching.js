@@ -43,6 +43,7 @@ describe('Condition matching', function () {
     const rr = new CrutchyRewriter();
     rr.add(url => (url.indexOf('needle') > -1), '/rewrite-target');
     assert.strictEqual(rr.matchCondition('/hay/stack/needle/weedle'), '/rewrite-target');
+    assert.strictEqual(rr.matchCondition('/hay/stack/non33dl3shere/weedle'), null);
 
   });
 

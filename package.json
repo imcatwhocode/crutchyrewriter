@@ -9,7 +9,7 @@
   "dependencies": {},
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc --reporter=lcov --reporter=text-summary mocha",
+    "test": "nyc --reporter=lcov --reporter=text-summary --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "eslintConfig": {
