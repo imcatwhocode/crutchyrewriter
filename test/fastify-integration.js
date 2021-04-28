@@ -1,6 +1,5 @@
 /* eslint prefer-arrow-callback: 0 */
 /* eslint func-names: 0 */
-/* global describe, it */
 const assert = require('assert');
 const http = require('http');
 const http2 = require('http2');
